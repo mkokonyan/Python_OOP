@@ -20,6 +20,7 @@ class Guild:
         if player_name not in [p.name for p in self.players]:
             return f"Player {player_name} is not in the guild."
         removed_player = list(filter(lambda p: p.name == player_name, self.players))[0]
+        removed_player.guild = "Unaffiliated"
         self.players.remove(removed_player)
         return f"Player {player_name} has been removed from the guild."
 
