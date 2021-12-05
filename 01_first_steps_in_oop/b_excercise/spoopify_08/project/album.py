@@ -5,7 +5,7 @@ class Album:
     def __init__(self, name: str, songs=None):
         self.name = name
         if songs is None:
-            songs = []
+            self.songs = []
         elif not isinstance(songs, list):
             self.songs = []
             self.songs.append(songs)
@@ -19,10 +19,10 @@ class Album:
         if self.published:
             return f"Cannot add songs. Album is published."
         if song in self.songs:
-            return f"Song is already in album."
+            return f"Song is already in the album."
         self.songs.append(song)
 
-        return f"Song {song.name} has been added to album {self.name}"
+        return f"Song {song.name} has been added to the album {self.name}."
 
     def remove_song(self, song_name: str):
         if song_name not in map(lambda x: x.name, self.songs):
@@ -31,7 +31,7 @@ class Album:
             return "Cannot remove songs. Album is published."
         song = [s for s in self.songs if s.name == song_name][0]
         self.songs.remove(song)
-        return f"Remove song {song.name} from album {self.name}."
+        return f"Removed song {song.name} from album {self.name}."
 
     def publish(self):
         if self.published:
