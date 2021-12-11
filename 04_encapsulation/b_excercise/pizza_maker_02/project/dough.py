@@ -16,13 +16,13 @@ class Dough:
 
     @property
     def baking_technique(self):
-        return self.__backing_technique
+        return self.__baking_technique
 
     @baking_technique.setter
     def baking_technique(self, value):
         if not value:
             raise ValueError("The baking technique cannot be an empty string")
-        self.__backing_technique = value
+        self.__baking_technique = value
 
     @property
     def weight(self):
