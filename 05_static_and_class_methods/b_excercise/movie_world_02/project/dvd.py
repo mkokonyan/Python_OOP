@@ -11,7 +11,8 @@ class DVD:
               "10": "October",
               "11": "November",
               "12": "December"
-    }
+              }
+
     def __init__(self, name, id, creation_year, creation_month, age_restriction):
         self.name = name
         self.id = id
@@ -23,8 +24,8 @@ class DVD:
     def __repr__(self):
         return f"{self.id}: {self.name} ({self.creation_month} {self.creation_year}) has age restriction " \
                f"{self.age_restriction}. Status: {'rented' if self.is_rented else 'not rented'}"
+
     @classmethod
     def from_date(cls, id, name, date, age_restriction):
         _, creation_month, creation_year = date.split('.')
         return cls(name, id, int(creation_year), cls.MONTHS[creation_month], age_restriction)
-
