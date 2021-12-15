@@ -15,6 +15,7 @@ class take_skip:
         self.count -= 1
         return temp
 
+
 numbers = take_skip(2, 6)
 for number in numbers:
     print(number)

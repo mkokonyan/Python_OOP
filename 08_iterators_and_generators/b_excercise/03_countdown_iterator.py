@@ -13,6 +13,7 @@ class countdown_iterator:
         self.end -= 1
         return value
 
+
 iterator = countdown_iterator(10)
 for item in iterator:
     print(item, end=" ")
