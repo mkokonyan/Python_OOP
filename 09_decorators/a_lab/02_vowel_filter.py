@@ -1,4 +1,8 @@
+import functools
+
+
 def vowel_filter(function):
+    @functools.wraps(function)
     def wrapper():
         letters = function()
         return [letter for letter in letters if letter.lower() in "ayouie"]
