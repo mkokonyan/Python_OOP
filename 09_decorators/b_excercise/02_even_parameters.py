@@ -2,8 +2,7 @@ import functools
 
 
 def even_parameters(func):
-    functools.wraps(func)
-
+    @functools.wraps(func)
     def wrapper(*args):
         for num in args:
             if not isinstance(num, int) or not num % 2 == 0:
