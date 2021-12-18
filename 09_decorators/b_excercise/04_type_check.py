@@ -1,7 +1,7 @@
-def type_check(type):
+def type_check(type_to_check):
     def decorator(func):
         def wrapper(par):
-            if not isinstance(par, type):
+            if not isinstance(par, type_to_check):
                 return "Bad Type"
             result = func(par)
             return result
