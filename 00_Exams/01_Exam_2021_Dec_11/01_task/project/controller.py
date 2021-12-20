@@ -13,11 +13,13 @@ class Controller:
 
     def create_car(self, car_type: str, model: str, speed_limit: int):
 
-        if car_type in [car.model for car in self.cars]:
+        if model in [car.model for car in self.cars]:
             raise Exception(f"Car {model} is already created!")
-        if car_type in ["MuscleCar", "SportsCar"]:
-            car = globals()[car_type](model, speed_limit)
-            self.cars.append(car)
+        if car_type == "MuscleCar":
+            self.cars.append(MuscleCar(model, speed_limit))
+            return f"{car_type} {model} is created."
+        if car_type == "SportsCar":
+            self.cars.append(SportsCar(model, speed_limit))
             return f"{car_type} {model} is created."
 
     def create_driver(self, driver_name: str):
@@ -74,15 +76,16 @@ class Controller:
 
     def start_race(self, race_name: str):
         if not [race for race in self.races if race_name == race.name]:
-            raise f"Race {race_name} could not be found!"
+            raise Exception(f"Race {race_name} could not be found!")
         race_obj = [race for race in self.races if race_name == race.name][0]
         if len(race_obj.drivers) < 3:
             raise Exception(f"Race {race_name} cannot start with less than 3 participants!")
-        top_three_cars = sorted([driver for driver in race_obj.drivers], key= lambda x: -x.car.speed_limit)[:3]
+        top_three_cars = sorted([driver for driver in race_obj.drivers], key=lambda x: -x.car.speed_limit)[:3]
         result = []
         for driver in top_three_cars:
             driver.number_of_wins += 1
-            result.append(f"Driver {driver.name} wins the {race_obj.name} race with a speed of {driver.car.speed_limit}.")
+            result.append(
+                f"Driver {driver.name} wins the {race_obj.name} race with a speed of {driver.car.speed_limit}.")
         return '\n'.join(result)
 
 
