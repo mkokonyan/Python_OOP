@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class BaseAquarium(ABC):
     @abstractmethod
     def __init__(self, name, capacity):
@@ -24,11 +25,8 @@ class BaseAquarium(ABC):
     def add_fish(self, fish):
         if len(self.fish) == self.capacity:
             return "Not enough capacity."
-        # TODO check if type of fish matters
-        if (fish.__class__.__name__.startswith("Freshwater") and self.__class__.__name__.startswith("Freshwater")) or \
-                (fish.__class__.__name__.startswith("Saltwater") and self.__class__.__name__.startswith("Saltwater")):
-            self.fish.append(fish)
-            return f"Successfully added {fish.__class__.__name__} to {self.name}."
+        self.fish.append(fish)
+        return f"Successfully added {fish.__class__.__name__} to {self.name}."
 
     def remove_fish(self, fish):
         if fish in self.fish:
@@ -42,6 +40,5 @@ class BaseAquarium(ABC):
 
     def __str__(self):
         fish_data = "none" if not self.fish else ' '.join([fish.name for fish in self.fish])
-        return f"{self.name}:\nFish: {fish_data}\nDecorations: {len(self.decorations)}\nComfort: {self.calculate_comfort()}"
-
-
+        return f"{self.name}:\nFish: {fish_data}\n" \
+               f"Decorations: {len(self.decorations)}\nComfort: {self.calculate_comfort()}"
